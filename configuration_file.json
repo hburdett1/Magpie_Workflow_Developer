@@ -1,0 +1,161 @@
+{
+    "_comment": "------------SET UP MAIN DIRECTORY---------------",
+    "main_dir": "/content/google_drive/MyDrive/Developers_Magpie_Workflow",
+    "temporary_dir": "/content/google_drive/MyDrive/Developers_Magpie_Workflow/temporary_data",
+
+    "_comment": "------------1a) STUDY AREA---------------",
+    "generate_shapefile": "yes",
+    
+    "define_lat_shp": "NA",
+    "define_lon_shp": "NA",
+    "city_name_shp": "NA",
+    
+    "interactive_map_response": "no",
+    
+    "product_name_shp": "NALRP",
+    "gauge_name_shp": "05AA024",
+
+    "version_num_shp": "v2-1",
+    
+    "most_down_stream_subbasin_ids_shp": 4092197,
+    "most_up_stream_subbasin_ids_shp": -1,
+
+    "_comment": "------------ 1b) DEM ---------------",
+    "generate_DEM": "yes",
+    "upload_DEM": "no",
+
+    "data_source_dem": "MERIT/DEM/v1_0_3",
+    "band_name_dem": "dem",
+    "scale_dem": "90",
+
+    "DEM_visualize": "yes",
+    "Slope_visualize": "yes",
+    "Aspect_visualize": "yes",
+
+    "save_shp_of_aspect": "no",
+
+    "_comment": "------------ 1c) ELEVATION BANDS ---------------",
+    "generate_elev_bands": "yes",
+    "upload_elev_bands": "no",
+
+    "increment_val": "100",
+    "min_elev": "100",
+
+    "_comment": "------------ 1d) LANDCOVER ---------------",
+    "generate_landcover": "yes",
+    "upload_landcover": "no",
+    
+    "data_source_landcover": "MODIS/061/MCD12Q1",
+    "year_of_interest": "2010",
+    "band_name_landcover": "LC_Type1",
+    "scale_landcover": "90",
+
+    "_comment": "------------ 1e) SOIL ---------------",
+    "generate_soil": "yes",
+    "upload_soil": "no",
+
+    "data_source_soil": "OpenLandMap/SOL/SOL_TEXTURE-CLASS_USDA-TT_M/v02",
+    "year_of_interest": "2010",
+    "band_name_soil": "b0",
+    "scale_soil": "90",
+
+    "_comment": "------------ 1f) CLASSIFICATION ---------------",
+    "_comment": "--- Landcover ---",
+    "landuse_ID": "1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, -1", 
+    "landuse_Classifications": "FOREST, FOREST, FOREST, FOREST,FOREST,SHRUBLAND,SHRUBLAND,GRASSLAND,GRASSLAND,GRASSLAND,WETLAND,CROPLAND,BARREN,URBAN,CROPLAND,WATER,WATER,LAKE", 
+
+    "_comment": "--- Vegetation ---",
+    "veg_ID": "1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, -1", 
+    "veg_Classifications": "FOREST, FOREST, FOREST, FOREST,FOREST,SHRUBLAND,SHRUBLAND,GRASSLAND,GRASSLAND,GRASSLAND,WETLAND,CROPLAND,BARREN,URBAN,CROPLAND,WATER,WATER,LAKE", 
+ 
+    "_comment": "--- Soil ---",
+    "soil_ID": "1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, -1", 
+    "soil_Classifications": "SAND, LOAMY_SAND, SANDY_LOAM,SILT_LOAM,SILT,LOAM,SANDY_CLAY_LOAM,SILT_CLAY_LOAM,CLAY_LOAM,SANDY_CLAY,SILT_CLAY,CLAY,LAKE", 
+
+    "_comment": "------------ 2) DISCRETIZATION ---------------",
+
+    "_comment": "------------ 2a) BASINMAKER ROUTING PRODUCT ---------------",
+
+    "product_name": "NALRP",
+    "gauge_name": "05AA024",
+
+    "city_name": "NA",
+    "define_lat": "NA",
+    "define_lon": "NA",
+
+    "version_num": "v2-1",
+    
+    "most_down_stream_subbasin_ids": 4091556,
+    "most_up_stream_subbasin_ids": -1,
+
+    "lake_size": 5,
+    "minimum_subbasin_drainage_area": 50.0,
+
+    "_comment": "------------ 2b) BASINMAKER DERIVE HRUS ---------------",
+
+    "dem_lyr": "True",
+    "elevation_bands_lyr": "False",
+    "aspect_lyr": "False",
+    "landcover_lyr": "False",
+    "soil_lyr": "False",
+
+    "area_ratio_thresholds": [0.1,0.2,0.2],
+    "pixel_size": 30,
+
+    "_comment": "------------ 3) FORCING ---------------",
+
+    "_comment": "------------ 3a) RDRS DATA ---------------",
+
+    "format_shp_for_CaSPAr": "yes",
+
+    "path_to_RDRS_data": "/content/google_drive/MyDrive/Developers_Magpie_Workflow/temporary_data/RDRS_precip_temp_RAW.zip",
+    "HRU_map_name": "smm_hrus_filled_R2.shp",
+    "HRU_ID": "HRU_ID",
+    "netcdf_output_name": "rdrs_data_geo.nc",
+    
+    "variables_to_aggregate": "RDRS_v2.1_A_PR0_SFC,RDRS_v2.1_P_TT_1.5m,RDRS_v2.1_P_TT_1.5m",
+    "geopotential_var": "RDRS_v2.1_P_GZ_SFC",
+    "rdrs_var_names": "precipitation,min_temperature,max_temperature",
+    "rdrs_var_units": "mm,degC,degC",
+    "aggregation_operators": "sum,min,max",
+
+    "hour_shift": 7,
+    "aggregation_length": 24,
+    "conversion_factor": [1000,1,1],
+
+    "_comment": "------------ 3b) RVT GENERATOR ---------------",
+
+    "forcing_name_rvt": "Precipitation,Averagetemp",
+    "forcing_type_rvt": "PRECIP,TEMP_AVE",
+    "netCDF_var_names": "RDRS_v2.1_P_PR0_SFC,RDRS_v2.1_P_TT_1.5m",
+    "dim_names_rvt": "rlon rlat time",
+    "gridded_weight_filename": "GridWeights.txt",
+    "include_geopotential": "no",
+
+    "_comment": "------------ 3b) GRIDDED WEIGHT GENERATOR ---------------",
+
+    "netCDF_path": "/content/google_drive/MyDrive/Magpie_Workflow/workflow_outputs/RavenInput/input/mean_prcp_daily.nc",
+    "dim_names": "rlon,rlat",
+    "var_names": "lon,lat",
+    "boundary_shp_path": "/content/google_drive/MyDrive/Developers_Magpie_Workflow/workflow_outputs/RavenInput/maps/finalcat_hru_info.shp",
+    "subId": "3086525",
+    "gaugeId": "NA",
+    "gridWeights_output_name": "GridWeights.txt",
+
+    "_comment": "------------ 3c) DAYMET ---------------",
+
+    "prcp_dayMet": "yes",
+    "srad_dayMet": "no",
+    "tmax_dayMet": "no",
+    "tmin_dayMet": "no",
+
+    "min_year_dayMet": "2000",
+    "max_year_dayMet": "2000",
+
+    "upload_elev": "no",
+    "model_name": "model_name",
+
+
+    "_comment": "------------ COMPLETE ---------------"
+
+}
